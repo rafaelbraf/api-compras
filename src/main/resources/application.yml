@@ -1,0 +1,53 @@
+server:
+  servlet:
+    contextPath: /api
+
+info:
+  api:
+    version: @project.version@
+
+spring:
+  application:
+    name: API de Compras Sicredi
+  datasource:
+    url: jdbc:h2:mem:comprasdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        cache:
+          use_second_level_cache: false
+          use_query_cache: false
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+springdoc:
+  packages-to-scan: com.sicredi.apicompras.controller
+  api-docs:
+    enabled: true
+  show-actuator: true
+  swagger-ui:
+    doc-expansion: none
+    path: /
+    enabled: true
+  use-management-port: false
+  writer-with-default-pretty-printer: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type.descriptor.sql.BasicBinder: TRACE
+    root: INFO
+    com.sicredi.apicompras: DEBUG
+
